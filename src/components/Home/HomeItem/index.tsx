@@ -16,7 +16,12 @@ export default function HomeItem() {
             key={item.id}
             onClick={() => router.push(`/detail/${item.id}`)}
           >
-            <S.HomeItemImage backgroundImg={item.image} />
+            <S.HomeItemImage
+              backgroundImg={
+                item.image ||
+                "https://i.ibb.co/3fBz8rZ/notion-avatar-1688223170024-removebg-preview-2.png"
+              }
+            />
             <S.HomeEtcContainer>
               <S.HomeEtcProfileContainer>
                 <FaRegUserCircle size={23} color={"#495057"} />

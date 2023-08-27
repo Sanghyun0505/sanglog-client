@@ -36,6 +36,9 @@ export const DetailItemViewContainer = styled.div`
   h6 {
     margin-top: 4rem;
   }
+  code {
+    font-size: 12px;
+  }
 `;
 
 export const DetailItemTitle = styled.h1`

@@ -23,6 +23,7 @@ export const HomeItemImage = styled.div<{ backgroundImg: string }>`
   border-bottom: 1px solid #d9d9d9;
   background: url(${(props) => props.backgroundImg}) no-repeat;
   background-size: cover;
+  background-position: center;
 `;
 
 export const HomeEtcContainer = styled.div`

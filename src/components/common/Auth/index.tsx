@@ -1,14 +1,14 @@
 import { useSetRecoilState } from "recoil";
 import * as S from "./style";
 import { useCloseModal } from "@/hooks/common/useCloseModal";
-import { AuthAtom } from "@/stores/common/common.store";
+import { AuthSignInUpAtom } from "@/stores/common/common.store";
 import { useState } from "react";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 
 export default function Auth() {
   const [select, setSelect] = useState(true);
-  const setOpenAuthModal = useSetRecoilState(AuthAtom);
+  const setOpenAuthModal = useSetRecoilState(AuthSignInUpAtom);
   useCloseModal(setOpenAuthModal);
   return (
     <S.AuthContainer

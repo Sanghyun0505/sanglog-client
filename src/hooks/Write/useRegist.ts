@@ -7,7 +7,7 @@ import { useQueryClient } from "react-query";
 
 export const useRegist = () => {
   const router = useRouter();
-  const [textMarkdown, setTextMarkdown] = useState("");
+  const [textHtml, setTextHtml] = useState("");
   const [credentials, setCredentials] = useState<RegistParam>({
     title: "",
     subtitle: "",
@@ -39,17 +39,17 @@ export const useRegist = () => {
         return window.alert("제목을 입력해주세요!");
       }
 
-      if (textMarkdown.trim() === "") {
+      if (textHtml.trim() === "") {
         return window.alert("글을 입력해주세요!");
       }
-      console.log(textMarkdown);
+      console.log(textHtml);
 
-      const registData = Object.assign(credentials, { content: textMarkdown });
+      const registData = Object.assign(credentials, { content: textHtml });
       console.log(registData);
       registPost.mutateAsync(registData, {
         onSuccess: () => {
           window.alert("글을 등록하였습니다.");
-          setTextMarkdown("");
+          setTextHtml("");
           QueryClient.invalidateQueries(QUERY_KEYS.regist.getAllRegistedPost);
           router.push("/");
         },
@@ -65,7 +65,7 @@ export const useRegist = () => {
     handleGoOutClick,
     handleRegistClick,
     handleTitleChange,
-    setTextMarkdown,
+    setTextHtml,
     ...credentials,
   };
 };

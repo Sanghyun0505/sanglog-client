@@ -1,5 +1,5 @@
 import { ACCESS_TOKEN_KEY } from "@/constants/Auth/auth.constant";
-import { useToastAlert } from "@/libs/Toast/toast";
+import { useToastAlert } from "@/hooks/common/useToastAlert";
 import token from "@/libs/Token/token";
 import { usePostSignInMutation } from "@/queries/Auth/auth.query";
 import { SignInResponse, SignInUpParam } from "@/types/Auth/auth.type";

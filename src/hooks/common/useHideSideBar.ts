@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useSetRecoilState } from "recoil";
-import { HideSideBarAtom } from "@/stores/common/common.store";
+import { SideBarHideAtom } from "@/stores/common/common.store";
 
 export const useHideSideBar = () => {
-  const setHideSideBar = useSetRecoilState(HideSideBarAtom);
+  const setHideSideBar = useSetRecoilState(SideBarHideAtom);
   useEffect(() => {
     setHideSideBar(true);
     return () => setHideSideBar(false);

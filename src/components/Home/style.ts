@@ -5,14 +5,14 @@ export const HomeContainer = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  padding: 3.5rem 0 0 1rem;
+  position: relative;
 `;
 
 export const HomeWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 30px;
-  padding: 1rem;
+  padding: 2rem 0 2rem 2rem;
   overflow-y: scroll;
   ::-webkit-scrollbar {
     display: none;

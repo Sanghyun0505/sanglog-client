@@ -25,7 +25,7 @@ export const AuthWrapper = styled.div`
 
   @keyframes modaldown {
     from {
-      transform: translateY(-8%);
+      transform: translateY(-7%);
     }
     to {
       transform: translateY(0);

@@ -10,6 +10,7 @@ export const SideBarContainer = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 30px;
+  padding: 1rem 1rem;
 `;
 
 export const SideBarLogoContainer = styled.div`
@@ -38,9 +39,9 @@ export const LinkUl = styled.ul`
 export const LinkLi = styled.li<{ isSelect?: boolean }>`
   width: 90%;
   height: 40px;
-  border-radius: 0 10px 10px 0;
+  border-radius: 15px;
   display: flex;
-  padding-left: 10px;
+  padding-left: 20px;
   align-items: center;
   cursor: pointer;
   background-color: ${(props) => props.isSelect && "#5fd9cd"};

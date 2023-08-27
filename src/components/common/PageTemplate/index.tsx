@@ -4,7 +4,10 @@ import { ReactNode } from "react";
 const SideBar = dynamic(() => import("@/components/common/SideBar"), {
   ssr: false,
 });
-import { HideSideBarAtom, AuthAtom } from "@/stores/common/common.store";
+import {
+  SideBarHideAtom,
+  AuthSignInUpAtom,
+} from "@/stores/common/common.store";
 import { useRecoilValue } from "recoil";
 import Auth from "../Auth";
 import dynamic from "next/dynamic";
@@ -14,8 +17,8 @@ interface Props {
 }
 
 export default function PageTemplate({ children }: Props) {
-  const isHideSideBar = useRecoilValue(HideSideBarAtom);
-  const isOpenAuthModal = useRecoilValue(AuthAtom);
+  const isHideSideBar = useRecoilValue(SideBarHideAtom);
+  const isOpenAuthModal = useRecoilValue(AuthSignInUpAtom);
   return (
     <>
       <GlobalStyle />

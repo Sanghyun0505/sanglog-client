@@ -11,9 +11,9 @@ import "@toast-ui/editor/dist/i18n/ko-kr";
 import { useRef } from "react";
 import * as S from "./style";
 import { BsArrowLeft } from "@react-icons/all-files/bs/BsArrowLeft";
-import { useRegist } from "@/hooks/Regist/useRegist";
 import { useHideSideBar } from "@/hooks/common/useHideSideBar";
-import Header from "../common/Header";
+import useTokenCheck from "@/hooks/Auth/useTokenCheck";
+import { useRegist } from "@/hooks/Write/useRegist";
 import { registToolBarItems } from "@/constants/Regist/regist.constant";
 
 export default function Regist() {
@@ -22,12 +22,13 @@ export default function Regist() {
     handleGoOutClick,
     handleRegistClick,
     handleTitleChange,
-    setTextMarkdown,
+    setTextHtml,
     title,
     subtitle,
     image,
   } = useRegist();
   useHideSideBar();
+  useTokenCheck();
   return (
     <S.RegistContainer>
       <S.RegistTitleInputBar
@@ -48,9 +49,7 @@ export default function Regist() {
       />
       <Editor
         ref={editorRef}
-        onChange={() =>
-          setTextMarkdown(editorRef.current?.getInstance().getHTML())
-        }
+        onChange={() => setTextHtml(editorRef.current?.getInstance().getHTML())}
         previewStyle="vertical"
         initalValue="글을 작성해 주세요"
         placeholder="글을 작성해 주세요"

@@ -1,7 +1,7 @@
 import { usePostSignUpMutation } from "@/queries/Auth/auth.query";
 import { useState } from "react";
 import { SignUpType } from "@/types/Auth/auth.type";
-import { useToastAlert } from "@/libs/Toast/toast";
+import { useToastAlert } from "@/hooks/common/useToastAlert";
 
 export const useSignUp = () => {
   const { toastAlert } = useToastAlert();

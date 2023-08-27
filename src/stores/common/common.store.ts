@@ -1,11 +1,11 @@
 import { atom } from "recoil";
 
-export const HideSideBarAtom = atom<boolean>({
+export const SideBarHideAtom = atom<boolean>({
   key: "hideSideBarAtom",
   default: false,
 });
 
-export const AuthAtom = atom<boolean>({
+export const AuthSignInUpAtom = atom<boolean>({
   key: "authAtom",
   default: false,
 });

@@ -12,4 +12,5 @@ export const Wrapper = styled.div`
   width: 1400px;
   height: 100%;
   display: flex;
+  position: relative;
 `;
