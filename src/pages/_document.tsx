@@ -10,7 +10,7 @@ function MyDocument() {
         />
       </Head>
       <body>
-        <title>sanglog</title>
+        <title>Sanglog</title>
         <Main />
         <NextScript />
       </body>

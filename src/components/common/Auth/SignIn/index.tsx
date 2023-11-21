@@ -3,10 +3,10 @@ import * as S from "../style";
 import { useSignIn } from "@/hooks/Auth/useSignIn";
 
 interface Props {
-  setSelect: Dispatch<SetStateAction<boolean>>;
+  setSignInUpModal: Dispatch<SetStateAction<"signIn" | "signUp">>;
 }
 
-export default function Auth({ setSelect }: Props) {
+export default function Auth({ setSignInUpModal }: Props) {
   const { handleChange, handleSubmit, signInInfo } = useSignIn();
   const { userId, password } = signInInfo;
   return (
@@ -30,7 +30,7 @@ export default function Auth({ setSelect }: Props) {
         <S.AuthBtn type="submit">로그인</S.AuthBtn>
         <S.NotAccountText>
           계정이 없으신가요?{" "}
-          <span onClick={() => setSelect(false)}>회원가입</span>하기
+          <span onClick={() => setSignInUpModal("signUp")}>회원가입</span>하기
         </S.NotAccountText>
       </S.AuthInputForm>
     </S.SignInWrapper>

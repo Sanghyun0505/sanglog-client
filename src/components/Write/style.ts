@@ -14,15 +14,29 @@ export const RegistContainer = styled.form`
 `;
 
 export const RegistTitleInputBar = styled.input<{ fontSize: string }>`
-  width: 50%;
+  width: 100%;
   height: 65px;
-  padding: 0 10px 0 10px;
+
   font-size: ${(props) => props.fontSize};
   font-weight: bold;
   outline: none;
   border: none;
   background-color: #f8f9fa;
   border-radius: 5px;
+`;
+
+export const ImageInputBar = styled.input`
+  width: 40%;
+  height: 50px;
+
+  font-size: 16px;
+  font-weight: bold;
+
+  outline: none;
+  border: none;
+
+  background-color: #f8f9fa;
+  color: #5fd9cd;
 `;
 
 export const RegistSubmitContainer = styled.div`

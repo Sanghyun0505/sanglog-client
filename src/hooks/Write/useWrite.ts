@@ -1,11 +1,15 @@
 import { QUERY_KEYS } from "@/queries/queryKey";
-import { useRegistPostMutation } from "@/queries/Regist/regist.query";
+import {
+  useDeleteRegistedPostMutation,
+  useRegistPostMutation,
+} from "@/queries/Regist/regist.query";
 import { RegistParam } from "@/types/regist/regist.type";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useQueryClient } from "react-query";
+import { useToastAlert } from "../common/useToastAlert";
 
-export const useRegist = () => {
+export const useWrite = () => {
   const router = useRouter();
   const [textHtml, setTextHtml] = useState("");
   const [credentials, setCredentials] = useState<RegistParam>({
@@ -14,6 +18,8 @@ export const useRegist = () => {
     image: "",
   });
   const registPost = useRegistPostMutation();
+  const deletePost = useDeleteRegistedPostMutation();
+  const { toastAlert } = useToastAlert();
   const QueryClient = useQueryClient();
 
   const handleGoOutClick = () => {
@@ -23,12 +29,31 @@ export const useRegist = () => {
     }
   };
 
-  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setCredentials((prevCredentials) => ({
       ...prevCredentials,
       [name]: value,
     }));
+  };
+
+  const handleDeleteClick = (
+    e: React.MouseEvent<HTMLDivElement>,
+    id: number
+  ) => {
+    e.preventDefault();
+    const answer = window.confirm("글을 삭제하시겠습니까?");
+    if (answer) {
+      deletePost.mutate(id, {
+        onSuccess: () => {
+          toastAlert("게시글을 삭제하셨습니다.", "success");
+          QueryClient.invalidateQueries(QUERY_KEYS.regist.getAllRegistedPost);
+        },
+        onError: () => {
+          toastAlert("게시글을 삭제하지 못했습니다.", "error");
+        },
+      });
+    }
   };
 
   const handleRegistClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -42,19 +67,17 @@ export const useRegist = () => {
       if (textHtml.trim() === "") {
         return window.alert("글을 입력해주세요!");
       }
-      console.log(textHtml);
 
       const registData = Object.assign(credentials, { content: textHtml });
-      console.log(registData);
       registPost.mutateAsync(registData, {
         onSuccess: () => {
-          window.alert("글을 등록하였습니다.");
+          toastAlert("글을 등록하였습니다.", "success");
           setTextHtml("");
           QueryClient.invalidateQueries(QUERY_KEYS.regist.getAllRegistedPost);
           router.push("/");
         },
         onError: (e) => {
-          window.alert("글을 등록하지 못했습니다.");
+          toastAlert("글을 등록하지 못했습니다.", "error");
           console.log(e);
         },
       });
@@ -64,7 +87,8 @@ export const useRegist = () => {
   return {
     handleGoOutClick,
     handleRegistClick,
-    handleTitleChange,
+    handleDeleteClick,
+    handleChange,
     setTextHtml,
     ...credentials,
   };

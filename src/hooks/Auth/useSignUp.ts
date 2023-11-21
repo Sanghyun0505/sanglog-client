@@ -2,9 +2,12 @@ import { usePostSignUpMutation } from "@/queries/Auth/auth.query";
 import { useState } from "react";
 import { SignUpType } from "@/types/Auth/auth.type";
 import { useToastAlert } from "@/hooks/common/useToastAlert";
+import { useSetRecoilState } from "recoil";
+import { SignInUpModalAtom } from "@/stores/common/common.store";
 
 export const useSignUp = () => {
   const { toastAlert } = useToastAlert();
+  const setSignInUpModal = useSetRecoilState(SignInUpModalAtom);
   const [signUpInfo, setSignUpInfo] = useState<SignUpType>({
     userId: "",
     password: "",
@@ -42,6 +45,7 @@ export const useSignUp = () => {
       {
         onSuccess: () => {
           toastAlert("축하합니다! 회원가입을 하셨습니다.", "success");
+          setSignInUpModal("signIn");
         },
         onError: () => {
           toastAlert("회원가입에 실패하였습니다!", "error");

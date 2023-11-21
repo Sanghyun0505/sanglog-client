@@ -29,6 +29,28 @@ export const SideBarLogoContainer = styled.div`
   }
 `;
 
+export const ProfileContainer = styled.div`
+  width: 100%;
+  height: 80px;
+
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+  padding-left: 10px;
+
+  border-radius: 10px;
+  border: 2px solid #5fd9cd;
+
+  img {
+    width: 50px;
+    height: 50px;
+  }
+
+  p {
+    font-size: 18px;
+  }
+`;
+
 export const LinkUl = styled.ul`
   display: flex;
   flex-direction: column;
@@ -37,7 +59,7 @@ export const LinkUl = styled.ul`
 `;
 
 export const LinkLi = styled.li<{ isSelect?: boolean }>`
-  width: 90%;
+  width: 100%;
   height: 40px;
   border-radius: 15px;
   display: flex;

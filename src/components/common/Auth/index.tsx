@@ -1,13 +1,15 @@
-import { useSetRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import * as S from "./style";
 import { useCloseModal } from "@/hooks/common/useCloseModal";
-import { AuthSignInUpAtom } from "@/stores/common/common.store";
-import { useState } from "react";
+import {
+  AuthSignInUpAtom,
+  SignInUpModalAtom,
+} from "@/stores/common/common.store";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 
 export default function Auth() {
-  const [select, setSelect] = useState(true);
+  const [signInUpModal, setSignInUpModal] = useRecoilState(SignInUpModalAtom);
   const setOpenAuthModal = useSetRecoilState(AuthSignInUpAtom);
   useCloseModal(setOpenAuthModal);
   return (
@@ -19,10 +21,10 @@ export default function Auth() {
     >
       <S.AuthWrapper onClick={(e) => e.stopPropagation()}>
         <S.AuthItemContainer>
-          {select ? (
-            <SignIn setSelect={setSelect} />
+          {signInUpModal === "signIn" ? (
+            <SignIn setSignInUpModal={setSignInUpModal} />
           ) : (
-            <SignUp setSelect={setSelect} />
+            <SignUp setSignInUpModal={setSignInUpModal} />
           )}
         </S.AuthItemContainer>
       </S.AuthWrapper>

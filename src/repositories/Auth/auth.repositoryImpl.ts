@@ -1,6 +1,5 @@
 import { SignInResponse, SignInUpParam } from "@/types/Auth/auth.type";
 import { AuthRepository } from "./auth.repository";
-import axios from "axios";
 import { customAxios } from "@/libs/Axios/customAxios";
 
 class AuthRepositoryImpl implements AuthRepository {

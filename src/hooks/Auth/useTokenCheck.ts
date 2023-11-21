@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import token from "@/libs/Token/token";
 import { ACCESS_TOKEN_KEY } from "@/constants/Auth/auth.constant";
-import { useToasts } from "react-toast-notifications";
 import { useToastAlert } from "../common/useToastAlert";
 
 const useTokenCheck = () => {

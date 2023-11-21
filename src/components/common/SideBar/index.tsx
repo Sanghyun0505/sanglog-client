@@ -5,14 +5,17 @@ import { useRouter } from "next/router";
 import { SIDEBAR_ITEMS } from "@/constants/SideBar/sidebar.constant";
 import { useSetRecoilState } from "recoil";
 import { AuthSignInUpAtom } from "@/stores/common/common.store";
-import token from "@/libs/Token/token";
-import { ACCESS_TOKEN_KEY } from "@/constants/Auth/auth.constant";
 import { useLoggout } from "@/hooks/Auth/useLogout";
 import { SidBarItems } from "@/types/Sidebar/sidebar.type";
+import { useGetMyInfo } from "@/queries/Member/member.query";
+import { tokenDecode } from "@/utils/Auth/tokenDecode";
+import token from "@/libs/Token/token";
+import { ACCESS_TOKEN_KEY } from "@/constants/Auth/auth.constant";
 
 export default function SideBar() {
   const router = useRouter();
   const setOpenAuthModal = useSetRecoilState(AuthSignInUpAtom);
+  const { data: myInfo } = useGetMyInfo(Number(tokenDecode("sub")));
   const { handleLoggout } = useLoggout();
 
   const handleClick = (item: SidBarItems) => {
@@ -32,8 +35,17 @@ export default function SideBar() {
     <S.SideBarContainer>
       <S.SideBarLogoContainer onClick={() => router.push("/")}>
         <Image src={logo} alt="이미지 없음" />
-        <p>sanglog</p>
+        <p>Sanglog</p>
       </S.SideBarLogoContainer>
+      {token.getCookie(ACCESS_TOKEN_KEY) && (
+        <S.ProfileContainer>
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/3364/3364044.png"
+            alt="이미지 없음"
+          />
+          <p>{myInfo?.userId} 님</p>
+        </S.ProfileContainer>
+      )}
       <S.LinkUl>
         {SIDEBAR_ITEMS.map((item) => (
           <S.LinkLi

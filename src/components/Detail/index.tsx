@@ -11,8 +11,8 @@ const DetailItem = dynamic(() => import("./DetialItem"), {
 });
 
 export default function Detail() {
-  const router = useRouter();
   useHideSideBar();
+  const router = useRouter();
   return (
     <DetailContainer>
       <ErrorBoundary fallback={<>Error:)</>}>
@@ -28,4 +28,5 @@ const DetailContainer = styled.div`
   width: 100%;
   height: 100%;
   padding-bottom: 3rem;
+  background-color: #fff;
 `;

@@ -12,3 +12,9 @@ export interface SignUpType {
 export interface SignInResponse {
   access_token: string;
 }
+
+export type DecodeKeyType = "sub" | "authority" | "iat" | "exp" | "role";
+
+export type DecodeType = {
+  [key in DecodeKeyType]: string | number;
+};

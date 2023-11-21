@@ -13,43 +13,50 @@ import * as S from "./style";
 import { BsArrowLeft } from "@react-icons/all-files/bs/BsArrowLeft";
 import { useHideSideBar } from "@/hooks/common/useHideSideBar";
 import useTokenCheck from "@/hooks/Auth/useTokenCheck";
-import { useRegist } from "@/hooks/Write/useRegist";
+import { useWrite } from "@/hooks/Write/useWrite";
 import { registToolBarItems } from "@/constants/Regist/regist.constant";
+import useRoleCheck from "@/hooks/Auth/useRoleCheck";
 
 export default function Regist() {
   const editorRef = useRef<Editor>(null);
-  const {
-    handleGoOutClick,
-    handleRegistClick,
-    handleTitleChange,
-    setTextHtml,
-    title,
-    subtitle,
-    image,
-  } = useRegist();
+  const { ...attr } = useWrite();
   useHideSideBar();
   useTokenCheck();
+  useRoleCheck();
+
   return (
     <S.RegistContainer>
       <S.RegistTitleInputBar
         type="text"
         placeholder="제목을 입력해주세요"
-        value={title}
-        onChange={handleTitleChange}
+        value={attr.title}
+        onChange={attr.handleChange}
         name="title"
         fontSize="50px"
+        autoComplete="off"
       />
       <S.RegistTitleInputBar
         type="text"
         placeholder="부제목을 입력해주세요"
-        value={subtitle}
-        onChange={handleTitleChange}
+        value={attr.subtitle}
+        onChange={attr.handleChange}
         name="subtitle"
         fontSize="25px"
+        autoComplete="off"
+      />
+      <S.ImageInputBar
+        type="text"
+        placeholder="이미지의 링크를 입력해주세요"
+        value={attr.image}
+        onChange={attr.handleChange}
+        name="image"
+        autoComplete="off"
       />
       <Editor
         ref={editorRef}
-        onChange={() => setTextHtml(editorRef.current?.getInstance().getHTML())}
+        onChange={() =>
+          attr.setTextHtml(editorRef.current?.getInstance().getHTML())
+        }
         previewStyle="vertical"
         initalValue="글을 작성해 주세요"
         placeholder="글을 작성해 주세요"
@@ -61,11 +68,11 @@ export default function Regist() {
         useCommandShortcut={false}
       />
       <S.RegistSubmitContainer>
-        <S.RegistOutContainer onClick={handleGoOutClick}>
+        <S.RegistOutContainer onClick={attr.handleGoOutClick}>
           <BsArrowLeft size={30} />
           <p>나가기</p>
         </S.RegistOutContainer>
-        <S.RegistSubmitBtn onClick={handleRegistClick}>
+        <S.RegistSubmitBtn onClick={attr.handleRegistClick}>
           제출하기
         </S.RegistSubmitBtn>
       </S.RegistSubmitContainer>

@@ -1,4 +1,4 @@
-import authRepositoryImpl from "@/repositories/Auth/auth.repositories";
+import authRepositoryImpl from "@/repositories/Auth/auth.repositoryImpl";
 import { useMutation } from "react-query";
 import { SignInUpParam } from "@/types/Auth/auth.type";
 
