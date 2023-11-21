@@ -7,25 +7,34 @@ export const HomeItem = styled.div`
   background-color: #fff;
   box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 5px 0px;
   border: 1px solid #ddd;
-
-  transform: scale(1);
-  overflow: hidden;
-  transition: all 0.3s ease-in-out;
-  &:hover {
-    transform: scale(1.02);
-  }
 `;
 
-export const HomeItemImage = styled.div<{ backgroundImg: string }>`
+export const HomeItemImage = styled.div`
   width: 100%;
   height: 65%;
-  
+
   cursor: pointer;
   border-radius: 10px 10px 0 0;
   border-bottom: 1px solid #d9d9d9;
-  background: url(${(props) => props.backgroundImg}) no-repeat;
-  background-size: cover;
-  background-position: center;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    overflow: hidden;
+
+    transform: scale(1);
+    transition: all 0.25s ease-in-out;
+    &:hover {
+      transform: scale(1.04);
+    }
+  }
 `;
 
 export const HomeEtcContainer = styled.div`

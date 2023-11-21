@@ -28,13 +28,15 @@ export default function HomeItem() {
         ?.sort((a, b) => b.id - a.id)
         .map((item) => (
           <S.HomeItem key={item.id}>
-            <S.HomeItemImage
-              onClick={() => router.push(`/detail/${item.id}`)}
-              backgroundImg={
-                item.image ||
-                "https://i.ibb.co/3fBz8rZ/notion-avatar-1688223170024-removebg-preview-2.png"
-              }
-            />
+            <S.HomeItemImage onClick={() => router.push(`/detail/${item.id}`)}>
+              <img
+                src={
+                  item.image ||
+                  "https://i.ibb.co/3fBz8rZ/notion-avatar-1688223170024-removebg-preview-2.png"
+                }
+                alt="이미지 없음"
+              />
+            </S.HomeItemImage>
             <S.HomeEtcContainer>
               <S.HomeEtcWrapper>
                 <S.HomeEtcProfileContainer>
