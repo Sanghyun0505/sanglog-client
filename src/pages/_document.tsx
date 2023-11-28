@@ -1,21 +1,32 @@
-import { Html, Head, Main, NextScript } from "next/document";
+import Document, { DocumentContext, DocumentInitialProps } from "next/document";
+import { ServerStyleSheet } from "styled-components";
 
-function MyDocument() {
-  return (
-    <Html>
-      <Head>
-        <link
-          rel="shortcut icon"
-          href="http://localhost:3000/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo.f002d357.png&w=1200&q=75"
-        />
-      </Head>
-      <body>
-        <title>Sanglog</title>
-        <Main />
-        <NextScript />
-      </body>
-    </Html>
-  );
+export default class MyDocument extends Document {
+  static async getInitialProps(
+    ctx: DocumentContext
+  ): Promise<DocumentInitialProps> {
+    const sheet = new ServerStyleSheet();
+    const originalRenderPage = ctx.renderPage;
+
+    try {
+      ctx.renderPage = () =>
+        originalRenderPage({
+          enhanceApp: (App) => (props) =>
+            sheet.collectStyles(<App {...props} />),
+        });
+
+      const initialProps = await Document.getInitialProps(ctx);
+      return {
+        ...initialProps,
+        styles: [
+          <>
+            {initialProps.styles}
+            {sheet.getStyleElement()}
+          </>,
+        ],
+      };
+    } finally {
+      sheet.seal();
+    }
+  }
 }
-
-export default MyDocument;
